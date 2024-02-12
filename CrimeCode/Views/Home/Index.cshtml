@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CrimeCode.Models.TwoString>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 class="display-4">Текущее распределение задач</h1>
+
+<form asp-action="Agrigate">
+    
+    <div class="form-group">
+        <label class="control-label">StoryPoint</label>
+        <input type="text" size="40" name="storyPoint">
+        <input type="submit" value="Распределить задачи" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Worker
+            </th>
+            <th>
+                Task
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.String1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.String2)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
